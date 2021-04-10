@@ -106,6 +106,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
 
 		addWindowListener(this);
 		setVisible(true);
+		afficher(connectionBD.premier());
 	}
 
 	public void actionPerformed(ActionEvent e) {
