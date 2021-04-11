@@ -119,10 +119,32 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
 		if (e.getSource() == btDer)
 			afficher(connectionBD.dernier());
 
-		if (e.getSource() == btRecherche){connectionBD.recherche(
-				Integer.parseInt(txtAgeMinimum.getText()));
-				afficher(connectionBD.premier());
+		if (e.getSource() == btRecherche){
+			Personne p;
+				try{
+					connectionBD.recherche(Integer.parseInt(txtAgeMinimum.getText()));
+
+					p=connectionBD.premier();
+					if(p==null) {
+						txtNum.setText("Pas de personne plus âgé");
+						txtNom.setText("");
+						txtPrenom.setText("");
+						txtAge.setText("");
+					}else {
+						afficher(p);
+					}
+
+				}catch (NumberFormatException ex) {
+
+					txtNum.setText("Veuillez rentrer un nombre");
+					txtNom.setText("");
+					txtPrenom.setText("");
+					txtAge.setText("");
+
+				}
+
 		}
+
 		if (e.getSource() == btTous)
 			connectionBD.tous();
 
